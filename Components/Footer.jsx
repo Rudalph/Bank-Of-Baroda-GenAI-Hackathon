@@ -2,7 +2,7 @@ import React from 'react'
 
 export function Footer() {
   return (
-    <section className="overflow-hidden py-10 bg-[#f4f4f4] fixed bottom-0 w-full">
+    <section className="overflow-hidden py-12 bg-[#f4f4f4] bottom-0 w-full">
       <div className="relative z-10 mx-auto max-w-7xl px-4">
         <div className="-m-6 flex flex-wrap">
           <div className="w-full p-6 md:w-1/2 lg:w-5/12">
@@ -27,7 +27,7 @@ export function Footer() {
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-2/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase">
+              <h3 className="tracking-px mb-9  text-base font-bold uppercase">
                 About Us
               </h3>
               <ul>
@@ -56,15 +56,10 @@ export function Footer() {
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-2/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase">
-                Customer Support
+              <h3 className="tracking-px mb-9  text-base font-bold uppercase w-full">
+                Support
               </h3>
               <ul>
-                <li className="mb-4">
-                  <a className=" text-base font-medium text-[#75757A]" href="#">
-                    Find Important Customer Information
-                  </a>
-                </li>
                 <li className="mb-4">
                   <a className=" text-base font-medium text-[#75757A]" href="#">
                     RBI Kehta Hai
@@ -85,7 +80,7 @@ export function Footer() {
           </div>
           <div className="w-full p-6 md:w-1/2 lg:w-3/12">
             <div className="h-full">
-              <h3 className="tracking-px mb-9  text-xs font-semibold uppercase">
+              <h3 className="tracking-px mb-9  text-base font-bold uppercase">
                 Legals
               </h3>
               <ul>
