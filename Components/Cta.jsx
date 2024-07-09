@@ -1,49 +1,46 @@
 import React from 'react'
 
-export function Cta() {
+export default function Cta() {
   return (
-    <section className="py-10 pt-20">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-2xl  text-center">
-          <div className="isolate flex justify-center -space-x-2">
-            <img
-              className="relative z-30 inline-block h-14 w-14 rounded-full ring-4 ring-white"
-              src="https://leerob.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar.b1d1472f.jpg&w=256&q=75"
-              alt="Dan_Abromov"
-            />
-            <img
-              className="relative z-20 inline-block h-14 w-14 rounded-full ring-4 ring-white"
-              src="https://nextjs.org/_next/image?url=https%3A%2F%2Fwww.datocms-assets.com%2F35255%2F1665059775-delba.jpg&w=640&q=75"
-              alt="Guillermo_Rauch"
-            />
-            <img
-              className="relative z-10 inline-block h-14 w-14 rounded-full ring-4 ring-white"
-              src="https://leerob.io/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Favatar.b1d1472f.jpg&w=256&q=75"
-              alt="Lee_Robinson"
-            />
-            <img
-              className="relative z-0 inline-block h-14 w-14 rounded-full ring-4 ring-white"
-              src="https://nextjs.org/_next/image?url=https%3A%2F%2Fwww.datocms-assets.com%2F35255%2F1665059775-delba.jpg&w=640&q=75"
-              alt="Delba"
-            />
+    <section className='mt-10'>
+      <div className="px-2 lg:flex lg:flex-row lg:items-center">
+        <div className="w-full lg:w-1/2">
+          <div className="my-10 lg:my-0 lg:px-10">
+            <h2 className="text-3xl font-bold leading-tight text-[#162B75] sm:text-4xl lg:text-4xl">
+              Get full access to Platform
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-600 font-semibold">
+              Subscribe to Zenith - AI and get access to all features of of AI powered system. We belive in 
+              Elevating banking excellence with peak performance and passionate service.
+            </p>
+
+            <form action="#" method="POST" className="mt-8 max-w-xl">
+              <div className="flex flex-col sm:flex-row sm:items-center">
+                <div className="flex w-full max-w-sm items-center space-x-2">
+                  <input
+                    className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 "
+                    type="email"
+                    placeholder="Email"
+                  />
+                  <button
+                    type="button"
+                    className="rounded-md bg-[#F86E23] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                  >
+                    Subscribe
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-
-          <h2 className="mt-8 text-3xl font-bold leading-tight text-[#162B75] sm:text-4xl lg:mt-12 lg:text-5xl">
-            Join <span className="border-b-8 border-[#F86E23]">15,482</span> other Users
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-base text-[#75757A] md:mt-10 lg:text-xl">
-            Our mobile banking application with new and exciting features and easy user interface.
-          </p>
-
-          <button
-            type="button"
-            className="mt-8 rounded-md bg-[#F86E23] px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#f7a173] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            Get Access Now
-          </button>
+        </div>
+        <div className="w-full lg:w-1/2">
+          <img
+            src="https://indiaeducationdiary.in/wp-content/uploads/2024/06/image003.jpg"
+            alt="ManWith Laptop"
+            className="h-full w-full rounded-md object-cover"
+          />
         </div>
       </div>
     </section>
   )
 }
-export default Cta;

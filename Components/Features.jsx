@@ -3,7 +3,7 @@ import { FileText, SwatchBook, MessagesSquare, Handshake } from 'lucide-react'
 
 export function Feature() {
   return (
-    <div className="mx-auto  px-4 py-8 sm:px-6 lg:px-8 mt-32 bg-[#FCE0D3] w-full">
+    <div className="mx-auto  px-4 py-8 sm:px-6 lg:px-8 mt-10 bg-[#FCE0D3] w-full">
       <div className="mx-auto max-w-2xl text-center">
         <div className="mx-auto inline-flex rounded-full bg-gray-100 px-4 py-1.5">
           <p className="text-xs font-bold uppercase tracking-widest text-black">
