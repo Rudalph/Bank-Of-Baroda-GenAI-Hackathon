@@ -2,7 +2,7 @@ import React from 'react'
 
 export function Faqs() {
     return (
-        <section className="px-2 mt-24">
+        <section className="px-2 mt-10">
             <div className="mx-auto max-w-7xl py-10">
                 <div>
                     <div className="max-w-2xl">
