@@ -9,7 +9,6 @@ import Cta from "@/Components/Cta"
 export default function Home() {
   return (
     <div>
-      <Navbar />
       <Hero />
       <Cta/>
       <Feature />

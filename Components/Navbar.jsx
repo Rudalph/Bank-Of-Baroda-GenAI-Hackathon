@@ -16,7 +16,7 @@ const menuItems = [
     },
     {
         name: 'Simplifier',
-        href: '/',
+        href: '/Simplifier',
     },
     {
         name: 'Chat-Bot',
