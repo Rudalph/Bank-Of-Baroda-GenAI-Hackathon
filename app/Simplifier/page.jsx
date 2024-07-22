@@ -54,7 +54,7 @@ const Page = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('http://127.0.0.1:5002/', {
+      const response = await fetch('http://127.0.0.1:5001/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -67,8 +67,9 @@ const Page = () => {
       }
 
       const data = await response.json();
-      const answer = data.recommendations.replace(/[\*>#]/g, '')
-      setChatHistory([...chatHistory, { question, answer}]);
+      console.log(data);
+      const answer = data;
+      setChatHistory([...chatHistory, { question, answer: data.answer}]);
       console.log(answer);
       setQuestion(""); 
     } catch (error) {
@@ -133,20 +134,20 @@ const Page = () => {
               <div key={index}>
                 <div className="chat chat-start">
                   <div className="chat-image avatar">
-                    <div className=" w-32rounded-full text-[#10847E]">
+                    <div className=" w-32rounded-full text-[#F86E23]">
                       <RiRobot2Line size={50} />
                     </div>
                   </div>
-                  <div className="chat-bubble bg-[#DEF8ED] text-black">{chat.question}</div>
+                  <div className="chat-bubble bg-[#FCE0D3] text-black">{chat.question}</div>
                 </div>
 
                 <div className="chat chat-end p-5">
                   <div className="chat-image avatar">
-                    <div className=" w-32rounded-full text-[#10847E]">
+                    <div className=" w-32rounded-full text-[#F86E23]">
                       <FaRegUser size={50} />
                     </div>
                   </div>
-                  <div className="chat-bubble bg-[#DEF8ED] text-black">{chat.answer}</div>
+                  <div className="chat-bubble bg-[#FCE0D3] text-black">{chat.answer}</div>
                 </div>
               </div>
             ))}
