@@ -20,7 +20,7 @@ const menuItems = [
     },
     {
         name: 'Chat-Bot',
-        href: '/',
+        href: '/Chat',
     },
     {
         name: 'Advisor',
