@@ -12,7 +12,7 @@ const menuItems = [
     },
     {
         name: 'Generator',
-        href: '/',
+        href: '/Generator',
     },
     {
         name: 'Simplifier',
