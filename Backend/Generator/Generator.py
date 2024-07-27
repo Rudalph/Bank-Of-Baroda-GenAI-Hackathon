@@ -10,12 +10,15 @@ import warnings
 import os
 from urllib.parse import quote_plus
 from flask_cors import CORS
+import google.generativeai as genai
 
 app = Flask(__name__)
 CORS(app)
 
 # Environment Variables for API keys
 os.environ["GOOGLE_API_KEY"] = "AIzaSyC5agUKvQR7gBuutdV0FSo0tpz2MRn8uL4"
+GOOGLE_API_KEY="AIzaSyC5agUKvQR7gBuutdV0FSo0tpz2MRn8uL4"
+genai.configure(api_key=GOOGLE_API_KEY)
 
 # Encode MongoDB credentials
 username = quote_plus("gonsalvesrudalph")
@@ -67,9 +70,14 @@ def ask_question():
 
     # Get AI response
     compressed_docs = compression_retriever.get_relevant_documents(query)
-    response = compressed_docs[0].page_content if compressed_docs else "No relevant documents found."
+    response_content = compressed_docs[0].page_content if compressed_docs else "No relevant documents found."
 
-    return jsonify({"response": response})
+    model = genai.GenerativeModel('gemini-pro')
+    response = model.generate_content(f"Rewrite ${response_content} as it is only where asked for mobile number add 7249735828, account number add 9890996568, Branch add Nallasopara (Make sure do not generate any other text)")
+    response_text=response.text
+    print(response_text)
+
+    return jsonify({"response": response_text})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5003)
