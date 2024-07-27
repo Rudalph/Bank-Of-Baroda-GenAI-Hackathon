@@ -9,7 +9,7 @@ const PAGE_HEIGHT = 800;
 const MARGIN = 50; 
 const LINE_HEIGHT = 14; 
 
-const page = () => {
+const Page = () => {
 
     const [doc, setDoc] = useState("The document will be displayed here...");
 
@@ -249,4 +249,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
