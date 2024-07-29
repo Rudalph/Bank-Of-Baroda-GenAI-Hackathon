@@ -19,25 +19,30 @@ os.environ["GOOGLE_API_KEY"] = "AIzaSyC5agUKvQR7gBuutdV0FSo0tpz2MRn8uL4"
 llm = ChatGoogleGenerativeAI(model="models/gemini-1.5-pro-latest")
 embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
-directory="./Data"
+# directory="./Data"
 
-loader = PyPDFDirectoryLoader(directory)   
-documents = loader.load()
+# loader = PyPDFDirectoryLoader(directory)   
+# documents = loader.load()
 
 
-text_splitter = CharacterTextSplitter(
-    separator=".",
-    chunk_size=4000,
-    chunk_overlap=3000,
-    length_function=len,
-    is_separator_regex=False,
+# text_splitter = CharacterTextSplitter(
+#     separator=".",
+#     chunk_size=4000,
+#     chunk_overlap=3000,
+#     length_function=len,
+#     is_separator_regex=False,
+# )
+# print(text_splitter)
+# pages = loader.load_and_split(text_splitter)
+
+# vectordb = Chroma.from_documents(pages, embeddings, persist_directory="./chroma_db")
+
+vectorstore_disk = Chroma(
+    persist_directory="./chroma_db",
+    embedding_function=embeddings
 )
-print(text_splitter)
-pages = loader.load_and_split(text_splitter)
 
-vectordb = Chroma.from_documents(pages, embeddings)
-
-retriever = vectordb.as_retriever(search_kwargs={"k": 5})
+retriever = vectorstore_disk.as_retriever(search_kwargs={"k": 5})
 
 template = """
 You are a helpful AI assistant.

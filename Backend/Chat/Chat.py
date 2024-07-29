@@ -1,82 +1,93 @@
+from pymongo import MongoClient
 from flask import Flask, request, jsonify
-from langchain import PromptTemplate
-from langchain.docstore.document import Document
-from langchain_community.document_loaders import WebBaseLoader
-from langchain.schema import StrOutputParser
-from langchain.schema.runnable import RunnablePassthrough
-from langchain_community.vectorstores import Chroma
-from langchain_google_genai import GoogleGenerativeAIEmbeddings, ChatGoogleGenerativeAI
-from flask_cors import CORS
+from langchain_community.vectorstores import MongoDBAtlasVectorSearch
+from langchain_google_genai import GoogleGenerativeAIEmbeddings
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.retrievers import ContextualCompressionRetriever
+from langchain.retrievers.document_compressors import LLMChainExtractor
+import warnings
 import os
+from urllib.parse import quote_plus
+from flask_cors import CORS
+import re
 
-# Initialize Flask app
+
 app = Flask(__name__)
 CORS(app)
 
-# Set Google API Key
+# Environment Variables for API keys
 os.environ["GOOGLE_API_KEY"] = "AIzaSyC5agUKvQR7gBuutdV0FSo0tpz2MRn8uL4"
+GOOGLE_API_KEY="AIzaSyC5agUKvQR7gBuutdV0FSo0tpz2MRn8uL4"
 
-# Define URLs and load documents
-urls = [
-    "https://www.bankofbaroda.in/faqs/cards",
-    "https://www.bankofbaroda.in/faqs/loans-and-advances",
-    "https://www.bankofbaroda.in/customer-support",
-    "https://www.bankofbaroda.in/locate-us/branches"
-]
 
-all_docs = []
-for url in urls:
-    loader = WebBaseLoader(url)
-    docs = loader.load()
-    for doc in docs:
-        text_content = doc.page_content
-        all_docs.append(Document(page_content=text_content, metadata={"source": url}))
+# Encode MongoDB credentials
+username = quote_plus("gonsalvesrudalph")
+password = quote_plus("Rudalph@2003")
+mongodb_conn_string = f"mongodb+srv://{username}:{password}@cluster0.cfdklwf.mongodb.net/"
+db_name = "BoB-Faqs"
+collection_name = "search_col"
+index_name = "vsearch_index"
 
-# Initialize embeddings and vector store
-gemini_embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+# Initialize embeddings
+embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
-vectorstore = Chroma.from_documents(
-    documents=all_docs,
-    embedding=gemini_embeddings,
-    persist_directory="./chroma_db"
+# Filter out the UserWarning from langchain
+warnings.filterwarnings("ignore", category=UserWarning, module="langchain.chains.llm")
+
+# Initialize MongoDB python client
+client = MongoClient(mongodb_conn_string)
+collection = client[db_name][collection_name]
+
+# Initialize vector store
+vectorStore = MongoDBAtlasVectorSearch(
+    collection, embeddings, index_name=index_name
 )
 
-vectorstore_disk = Chroma(
-    persist_directory="./chroma_db",
-    embedding_function=gemini_embeddings
+# Initialize LLM
+llm = ChatGoogleGenerativeAI(model="models/gemini-1.5-pro-latest", temperature=0.7)
+compressor = LLMChainExtractor.from_llm(llm)
+
+compression_retriever = ContextualCompressionRetriever(
+    base_compressor=compressor,
+    base_retriever=vectorStore.as_retriever()
 )
 
-retriever = vectorstore_disk.as_retriever(search_kwargs={"k": 1})
 
-# Initialize language model and prompt template
-llm = ChatGoogleGenerativeAI(model="models/gemini-1.5-pro-latest", temperature=0.7, top_p=0.85)
-llm_prompt_template = """You are an assistant for question-answering tasks.
-Use the following context to answer the question.
-If you don't know the answer, just say that you don't know.
-Use five sentences maximum and keep the answer concise.\n
-Question: {question} \nContext: {context} \nAnswer:"""
+def clean_response(response):
+    # Remove special characters and unwanted parts
+    clean_text = re.sub(r'```|>>>|Extracted relevant parts:', '', response)
+    return clean_text.strip()
 
-llm_prompt = PromptTemplate.from_template(llm_prompt_template)
 
-def format_docs(docs):
-    return "\n\n".join(doc.page_content for doc in docs)
-
-rag_chain = (
-    {"context": retriever | format_docs, "question": RunnablePassthrough()}
-    | llm_prompt
-    | llm
-    | StrOutputParser()
-)
 
 @app.route('/ask', methods=['POST'])
 def ask_question():
-    data = request.get_json()
-    question = data.get("question")
-    if not question:
-        return jsonify({"error": "No question provided"}), 400
-    
-    response = rag_chain.invoke(question)
-    return jsonify({"answer": response})
+    data = request.json
+    query=data.get('question')
+    # query=f"Generate {text}"
+    # query = data.get('question', 'Generate CONSENT FORM FOR AADHAAR SEEDING AND AUTHENTICATION')
 
-if __name__ == "__main__":
+    print("\nYour question:")
+    print("-------------")
+    print(query)
+
+    # Perform a similarity search
+    docs = vectorStore.max_marginal_relevance_search(query, K=1)
+
+    print("---------------")
+
+    # Get AI response
+    compressed_docs = compression_retriever.get_relevant_documents(query)
+    response_content = compressed_docs[0].page_content if compressed_docs else "No relevant documents found."
+
+    cleaned_response = clean_response(response_content)
+
+    # model = genai.GenerativeModel('gemini-pro')
+    # response = model.generate_content(f"Rewrite ${response_content} as it is only where asked for mobile number add 7249735828, account number add 9890996568, Branch add Nallasopara (Make sure do not generate any other text)")
+    # response_text=response.text
+    print(cleaned_response)
+
+    return jsonify({"answer": cleaned_response})
+
+if __name__ == '__main__':
     app.run(debug=True, port=5002)
