@@ -24,7 +24,7 @@ const menuItems = [
     },
     {
         name: 'Advisor',
-        href: '/',
+        href: '/Advisor',
     },
 ]
 
