@@ -94,47 +94,35 @@ const Page = () => {
             <div className='mt-28 flex justify-center'>
                 <Button className="bg-[#F86E23] m-4" onClick={() => document.getElementById('my_modal_4').showModal()}>Submit Data</Button>
                 <dialog id="my_modal_4" className="modal">
-                    <div className="modal-box w-11/12 max-w-7xl">
+                <div className="modal-box w-11/12 max-w-7xl">
                         <h3 className="font-bold text-lg text-[#F86E23]">Add your data to our database</h3>
                         <div className="py-4 flex justify-evenly">
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
+                            <Input type="text" placeholder="Account Number" className="m-2" />
+                            <Input type="text" placeholder="IFSC Code" className="m-2" />
+                            <Input type="text" placeholder="Branch Name" className="m-2" />
+                            <Input type="text" placeholder="Bank Name" className="m-2" />
                         </div>
 
                         <div className="py-4 flex justify-evenly">
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
+                            <Input type="text" placeholder="Account Holder's Name" className="m-2" />
+                            <Input type="text" placeholder="Mobile Number" className="m-2" />
+                            <Input type="text" placeholder="Email Address" className="m-2" />
+                            <Input type="text" placeholder="Address" className="m-2" />
                         </div>
-
 
                         <div className="py-4 flex justify-evenly">
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
+                            <Input type="text" placeholder="PAN Number" className="m-2" />
+                            <Input type="text" placeholder="Aadhar Number" className="m-2" />
+                            <Input type="text" placeholder="Date of Birth" className="m-2" />
+                            <Input type="text" placeholder="Customer ID" className="m-2" />
                         </div>
-
-
 
                         <div className="py-4 flex justify-evenly">
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
+                            <Input type="text" placeholder="Loan Account Number" className="m-2" />
+                            <Input type="text" placeholder="Insurance Policy Number" className="m-2" />
+                            <Input type="text" placeholder="Other Bank Details" className="m-2" />
+                            <Input type="text" placeholder="Additional Information" className="m-2" />
                         </div>
-
-
-                        <div className="py-4 flex justify-evenly">
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                            <Input type="email" placeholder="Email" className="m-2" />
-                        </div>
-
 
                         <div className="modal-action">
                             <form method="dialog">

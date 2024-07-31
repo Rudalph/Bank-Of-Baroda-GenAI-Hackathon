@@ -26,6 +26,7 @@ import Offers from "./offers";
 
 const page = () => {
 
+    const [test, setTest] = useState(null)
 
     const [amount, setAmount] = useState({
         travel: '',
@@ -67,6 +68,8 @@ const page = () => {
             }
             const data = await response.json();
             console.log('API Response:', data);
+            setTest(data)
+            // console.log(test)
             alert("Data added and API called successfully!");
         } catch (error) {
             console.error('Error making API call:', error);
@@ -92,6 +95,12 @@ const page = () => {
         };
         fetchData();
     }, []);
+
+    useEffect(() => {
+        if (test !== null) {
+            console.log('Updated test value:', test);
+        }
+    }, [test]);
 
 
     return (
@@ -372,26 +381,26 @@ const page = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200 bg-white">
-                                        {Offers.EntertainmentOffer.map((offer, index) => (
+                                        { test && test.EntertainmentOffer && test.EntertainmentOffer.map((offer, index) => (
                                             <tr key={index}>
                                                 <td className="whitespace-nowrap px-4 py-4">
                                                     <div className="flex items-center">
-                                                        <div className="text-sm font-medium text-gray-900">{offer.name}</div>
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
                                                     </div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-12 py-4">
-                                                    <div className="text-sm text-gray-900">{offer.details}</div>
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4">
-                                                    <div className="text-sm text-gray-900">{offer.validity}</div>
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
-                                                    {offer.code}
+                                                    {offer['offer.code']}
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
-                                                    {offer.link ? (
-                                                        <a href={offer.link} className="text-gray-700" target="_blank" rel="noopener noreferrer">
-                                                            Link
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
                                                         </a>
                                                     ) : (
                                                         'N/A'
@@ -400,26 +409,26 @@ const page = () => {
                                             </tr>
                                         ))}
 
-                                        {Offers.FoodOffer.map((offer, index) => (
+{ test && test.TravelOffer && test.TravelOffer.map((offer, index) => (
                                             <tr key={index}>
                                                 <td className="whitespace-nowrap px-4 py-4">
                                                     <div className="flex items-center">
-                                                        <div className="text-sm font-medium text-gray-900">{offer.name}</div>
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
                                                     </div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-12 py-4">
-                                                    <div className="text-sm text-gray-900">{offer.details}</div>
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4">
-                                                    <div className="text-sm text-gray-900">{offer.validity}</div>
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
-                                                    {offer.code}
+                                                    {offer['offer.code']}
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
-                                                    {offer.link ? (
-                                                        <a href={offer.link} className="text-gray-700" target="_blank" rel="noopener noreferrer">
-                                                            Link
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
                                                         </a>
                                                     ) : (
                                                         'N/A'
@@ -428,26 +437,26 @@ const page = () => {
                                             </tr>
                                         ))}
 
-                                        {Offers.LifestyleOffer.map((offer, index) => (
+{ test && test.LifestyleOffer && test.LifestyleOffer.map((offer, index) => (
                                             <tr key={index}>
                                                 <td className="whitespace-nowrap px-4 py-4">
                                                     <div className="flex items-center">
-                                                        <div className="text-sm font-medium text-gray-900">{offer.name}</div>
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
                                                     </div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-12 py-4">
-                                                    <div className="text-sm text-gray-900">{offer.details}</div>
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4">
-                                                    <div className="text-sm text-gray-900">{offer.validity}</div>
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
-                                                    {offer.code}
+                                                    {offer['offer.code']}
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
-                                                    {offer.link ? (
-                                                        <a href={offer.link} className="text-gray-700" target="_blank" rel="noopener noreferrer">
-                                                            Link
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
                                                         </a>
                                                     ) : (
                                                         'N/A'
@@ -456,26 +465,82 @@ const page = () => {
                                             </tr>
                                         ))}
 
-                                        {Offers.TravelOffer.map((offer, index) => (
+{ test && test.HealthOffer && test.HealthOffer.map((offer, index) => (
                                             <tr key={index}>
                                                 <td className="whitespace-nowrap px-4 py-4">
                                                     <div className="flex items-center">
-                                                        <div className="text-sm font-medium text-gray-900">{offer.name}</div>
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
                                                     </div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-12 py-4">
-                                                    <div className="text-sm text-gray-900">{offer.details}</div>
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4">
-                                                    <div className="text-sm text-gray-900">{offer.validity}</div>
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
-                                                    {offer.code}
+                                                    {offer['offer.code']}
                                                 </td>
                                                 <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
-                                                    {offer.link ? (
-                                                        <a href={offer.link} className="text-gray-700" target="_blank" rel="noopener noreferrer">
-                                                            Link
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+{ test && test.ShoppinggOffer && test.ShoppingOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer['offer.code']}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+{ test && test.FoodOffer && test.FoodOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer['offer.code']}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
                                                         </a>
                                                     ) : (
                                                         'N/A'
@@ -495,3 +560,5 @@ const page = () => {
 }
 
 export default page
+
+
