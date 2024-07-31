@@ -22,8 +22,10 @@ import {
 } from "./ui/select"
 
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import Offers from "./offers";
 
 const page = () => {
+
 
     const [amount, setAmount] = useState({
         travel: '',
@@ -35,7 +37,6 @@ const page = () => {
         entertainment: ''
     });
 
-    const [travels, setTravels] = useState([]);
 
     const handleSubmitData = async () => {
         console.log(amount);
@@ -65,9 +66,7 @@ const page = () => {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            console.log('API Response:', data.TravelOffer);
-            setTravels(data.TravelOffer)
-            console.log("travels is here",travels);
+            console.log('API Response:', data);
             alert("Data added and API called successfully!");
         } catch (error) {
             console.error('Error making API call:', error);
@@ -93,7 +92,7 @@ const page = () => {
         };
         fetchData();
     }, []);
-    
+
 
     return (
         <div>
@@ -331,8 +330,8 @@ const page = () => {
             <div className='flex justify-center align-middle items-center mt-32'>
                 <ResponsiveContainer width="80%" height={400}>
                     <BarChart data={data}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey="timestamp"/>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="timestamp" />
                         <YAxis />
                         <Tooltip />
                         <Legend />
@@ -365,67 +364,124 @@ const page = () => {
                                 <table className="min-w-full divide-y divide-[#F86E23]">
                                     <thead className="bg-[#FCE0D3]">
                                         <tr>
-                                            <th
-                                                scope="col"
-                                                className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
-                                            >
-                                                <span>Offers</span>
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-12 py-3.5 text-left text-sm font-normal text-gray-700"
-                                            >
-                                                Details
-                                            </th>
-
-                                            <th
-                                                scope="col"
-                                                className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
-                                            >
-                                                Validity
-                                            </th>
-
-                                            <th
-                                                scope="col"
-                                                className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
-                                            >
-                                                Code
-                                            </th>
-
-                                            <th
-                                                scope="col"
-                                                className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
-                                            >
-                                                Link
-                                            </th>
-
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Offers</th>
+                                            <th className="px-12 py-3.5 text-left text-sm font-normal text-gray-700">Details</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Validity</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Code</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Link</th>
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200 bg-white">
-                                    {travels.map((offer, index) => (
-                                        <tr key={index}>
-                                            <td className="whitespace-nowrap px-4 py-4">
-                                                <div className="flex items-center">
-                                                    <div className="">
+                                        {Offers.EntertainmentOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
                                                         <div className="text-sm font-medium text-gray-900">{offer.name}</div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td className="whitespace-nowrap px-12 py-4">
-                                                <div className="text-sm text-gray-900 ">details</div>
-                                            </td>
-                                            <td className="whitespace-nowrap px-4 py-4">
-                                                <div className="text-sm text-gray-900 ">validity</div>
-                                            </td>
-                                            <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
-                                                code
-                                            </td>
-                                            <td className="whitespace-nowrap px-4 py-4  text-sm font-medium">
-                                                <a href="#" className="text-gray-700">
-                                                    link
-                                                </a>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer.details}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer.validity}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer.code}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer.link ? (
+                                                        <a href={offer.link} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            Link
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                        {Offers.FoodOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer.name}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer.details}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer.validity}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer.code}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer.link ? (
+                                                        <a href={offer.link} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            Link
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                        {Offers.LifestyleOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer.name}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer.details}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer.validity}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer.code}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer.link ? (
+                                                        <a href={offer.link} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            Link
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                        {Offers.TravelOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer.name}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer.details}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer.validity}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer.code}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer.link ? (
+                                                        <a href={offer.link} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            Link
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
                                         ))}
                                     </tbody>
                                 </table>
