@@ -355,13 +355,13 @@ const page = () => {
                 </ResponsiveContainer>
             </div>
 
-            <section className="mx-auto w-full max-w-7xl px-4 py-4 mt-32">
+            {/* ALL */}
+            {/* <section className="mx-auto w-full max-w-7xl px-4 py-4 mt-32">
                 <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
                     <div>
-                        <h2 className="text-lg font-semibold">Employees</h2>
+                        <h2 className="text-lg font-semibold text-[#F86E23]">Offers & Schemes For You</h2>
                         <p className="mt-1 text-sm text-gray-700">
-                            This is a list of all employees. You can add new employees, edit or delete existing
-                            ones.
+                            This is a list of all Offers and Schemes of Bank of Baroda. These are personalized schemes for you as per the data you shared.
                         </p>
                     </div>
 
@@ -381,7 +381,7 @@ const page = () => {
                                         </tr>
                                     </thead>
                                     <tbody className="divide-y divide-gray-200 bg-white">
-                                        { test && test.EntertainmentOffer && test.EntertainmentOffer.map((offer, index) => (
+                                        {test && test.EntertainmentOffer && test.EntertainmentOffer.map((offer, index) => (
                                             <tr key={index}>
                                                 <td className="whitespace-nowrap px-4 py-4">
                                                     <div className="flex items-center">
@@ -409,7 +409,7 @@ const page = () => {
                                             </tr>
                                         ))}
 
-{ test && test.TravelOffer && test.TravelOffer.map((offer, index) => (
+                                        {test && test.TravelOffer && test.TravelOffer.map((offer, index) => (
                                             <tr key={index}>
                                                 <td className="whitespace-nowrap px-4 py-4">
                                                     <div className="flex items-center">
@@ -437,7 +437,7 @@ const page = () => {
                                             </tr>
                                         ))}
 
-{ test && test.LifestyleOffer && test.LifestyleOffer.map((offer, index) => (
+                                        {test && test.LifestyleOffer && test.LifestyleOffer.map((offer, index) => (
                                             <tr key={index}>
                                                 <td className="whitespace-nowrap px-4 py-4">
                                                     <div className="flex items-center">
@@ -465,7 +465,7 @@ const page = () => {
                                             </tr>
                                         ))}
 
-{ test && test.HealthOffer && test.HealthOffer.map((offer, index) => (
+                                        {test && test.HealthOffer && test.HealthOffer.map((offer, index) => (
                                             <tr key={index}>
                                                 <td className="whitespace-nowrap px-4 py-4">
                                                     <div className="flex items-center">
@@ -493,7 +493,7 @@ const page = () => {
                                             </tr>
                                         ))}
 
-{ test && test.ShoppinggOffer && test.ShoppingOffer.map((offer, index) => (
+                                        {test && test.ShoppinggOffer && test.ShoppingOffer.map((offer, index) => (
                                             <tr key={index}>
                                                 <td className="whitespace-nowrap px-4 py-4">
                                                     <div className="flex items-center">
@@ -521,7 +521,7 @@ const page = () => {
                                             </tr>
                                         ))}
 
-{ test && test.FoodOffer && test.FoodOffer.map((offer, index) => (
+                                        {test && test.FoodOffer && test.FoodOffer.map((offer, index) => (
                                             <tr key={index}>
                                                 <td className="whitespace-nowrap px-4 py-4">
                                                     <div className="flex items-center">
@@ -554,7 +554,380 @@ const page = () => {
                         </div>
                     </div>
                 </div>
+            </section> */}
+            
+            {/* Entertainment */}
+            <section className="mx-auto w-full max-w-7xl px-4 py-4 mt-32">
+                <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+                    <div>
+                        <h2 className="text-lg font-semibold text-[#F86E23]">Entertainment Offers & Schemes For You</h2>
+                        <p className="mt-1 text-sm text-gray-700">
+                            This is a list of all Offers and Schemes of Bank of Baroda. These are personalized schemes for you as per the data you shared.
+                        </p>
+                    </div>
+
+                </div>
+                <div className="mt-6 flex flex-col">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div className="overflow-hidden border border-[#F86E23] md:rounded-lg">
+                                <table className="min-w-full divide-y divide-[#F86E23]">
+                                    <thead className="bg-[#FCE0D3]">
+                                        <tr>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Offers</th>
+                                            <th className="px-12 py-3.5 text-left text-sm font-normal text-gray-700">Details</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Validity</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Code</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-200 bg-white">
+                                        {test && test.EntertainmentOffer && test.EntertainmentOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer['offer.code']}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
+
+             {/* Travel */}
+            <section className="mx-auto w-full max-w-7xl px-4 py-4 mt-32">
+                <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+                    <div>
+                        <h2 className="text-lg font-semibold text-[#F86E23]">Travel Offers & Schemes For You</h2>
+                        <p className="mt-1 text-sm text-gray-700">
+                            This is a list of all Offers and Schemes of Bank of Baroda. These are personalized schemes for you as per the data you shared.
+                        </p>
+                    </div>
+
+                </div>
+                <div className="mt-6 flex flex-col">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div className="overflow-hidden border border-[#F86E23] md:rounded-lg">
+                                <table className="min-w-full divide-y divide-[#F86E23]">
+                                    <thead className="bg-[#FCE0D3]">
+                                        <tr>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Offers</th>
+                                            <th className="px-12 py-3.5 text-left text-sm font-normal text-gray-700">Details</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Validity</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Code</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-200 bg-white">
+                                        {test && test.TravelOffer && test.TravelOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer['offer.code']}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Health */}
+            <section className="mx-auto w-full max-w-7xl px-4 py-4 mt-32">
+                <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+                    <div>
+                        <h2 className="text-lg font-semibold text-[#F86E23]">Health Offers & Schemes For You</h2>
+                        <p className="mt-1 text-sm text-gray-700">
+                            This is a list of all Offers and Schemes of Bank of Baroda. These are personalized schemes for you as per the data you shared.
+                        </p>
+                    </div>
+
+                </div>
+                <div className="mt-6 flex flex-col">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div className="overflow-hidden border border-[#F86E23] md:rounded-lg">
+                                <table className="min-w-full divide-y divide-[#F86E23]">
+                                    <thead className="bg-[#FCE0D3]">
+                                        <tr>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Offers</th>
+                                            <th className="px-12 py-3.5 text-left text-sm font-normal text-gray-700">Details</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Validity</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Code</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-200 bg-white">
+                                        {test && test.HealthOffer && test.HealthOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer['offer.code']}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Lifestyle */}
+            <section className="mx-auto w-full max-w-7xl px-4 py-4 mt-32">
+                <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+                    <div>
+                        <h2 className="text-lg font-semibold text-[#F86E23]">Lifestyle Offers & Schemes For You</h2>
+                        <p className="mt-1 text-sm text-gray-700">
+                            This is a list of all Offers and Schemes of Bank of Baroda. These are personalized schemes for you as per the data you shared.
+                        </p>
+                    </div>
+
+                </div>
+                <div className="mt-6 flex flex-col">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div className="overflow-hidden border border-[#F86E23] md:rounded-lg">
+                                <table className="min-w-full divide-y divide-[#F86E23]">
+                                    <thead className="bg-[#FCE0D3]">
+                                        <tr>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Offers</th>
+                                            <th className="px-12 py-3.5 text-left text-sm font-normal text-gray-700">Details</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Validity</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Code</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-200 bg-white">
+                                        {test && test.LifestyleOffer && test.LifestyleOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer['offer.code']}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             {/* Food */}
+            <section className="mx-auto w-full max-w-7xl px-4 py-4 mt-32">
+                <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+                    <div>
+                        <h2 className="text-lg font-semibold text-[#F86E23]">Food Offers & Schemes For You</h2>
+                        <p className="mt-1 text-sm text-gray-700">
+                            This is a list of all Offers and Schemes of Bank of Baroda. These are personalized schemes for you as per the data you shared.
+                        </p>
+                    </div>
+
+                </div>
+                <div className="mt-6 flex flex-col">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div className="overflow-hidden border border-[#F86E23] md:rounded-lg">
+                                <table className="min-w-full divide-y divide-[#F86E23]">
+                                    <thead className="bg-[#FCE0D3]">
+                                        <tr>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Offers</th>
+                                            <th className="px-12 py-3.5 text-left text-sm font-normal text-gray-700">Details</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Validity</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Code</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-200 bg-white">
+                                        {test && test.FoodOffer && test.FoodOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer['offer.code']}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             {/* Shopping */}
+             <section className="mx-auto w-full max-w-7xl px-4 py-4 mt-32">
+                <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+                    <div>
+                        <h2 className="text-lg font-semibold text-[#F86E23]">Shopping Offers & Schemes For You</h2>
+                        <p className="mt-1 text-sm text-gray-700">
+                            This is a list of all Offers and Schemes of Bank of Baroda. These are personalized schemes for you as per the data you shared.
+                        </p>
+                    </div>
+
+                </div>
+                <div className="mt-6 flex flex-col">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div className="overflow-hidden border border-[#F86E23] md:rounded-lg">
+                                <table className="min-w-full divide-y divide-[#F86E23]">
+                                    <thead className="bg-[#FCE0D3]">
+                                        <tr>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Offers</th>
+                                            <th className="px-12 py-3.5 text-left text-sm font-normal text-gray-700">Details</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Validity</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Code</th>
+                                            <th className="px-4 py-3.5 text-left text-sm font-normal text-gray-700">Link</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-200 bg-white">
+                                        {test && test.ShoppingOffer && test.ShoppingOffer.map((offer, index) => (
+                                            <tr key={index}>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="flex items-center">
+                                                        <div className="text-sm font-medium text-gray-900">{offer['offer.name']}</div>
+                                                    </div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-12 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.details']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4">
+                                                    <div className="text-sm text-gray-900">{offer['offer.validity']}</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                    {offer['offer.code']}
+                                                </td>
+                                                <td className="whitespace-nowrap px-4 py-4 text-sm font-medium">
+                                                    {offer['offer.link'] ? (
+                                                        <a href={offer['offer.link']} className="text-gray-700" target="_blank" rel="noopener noreferrer">
+                                                            {offer['offer.link']}
+                                                        </a>
+                                                    ) : (
+                                                        'N/A'
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        ))}
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
         </div>
     )
 }
