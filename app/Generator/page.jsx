@@ -188,7 +188,7 @@ const Page = () => {
                             </div>
                             <div className="card bg-[#FCE0D3] w-96 shadow-xl cursor-pointer m-2" onClick={handleFormType}>
                                 <div className="card-body">
-                                    <p>Debit cum ATM Card</p>
+                                    <p>Application form for Issuance / Re-issuance / Blocking of Debit Card </p>
                                 </div>
                             </div>
                             <div className="card bg-[#FCE0D3] w-96 shadow-xl cursor-pointer m-2" onClick={handleFormType}>

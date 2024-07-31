@@ -73,7 +73,7 @@ def ask_question():
     response_content = compressed_docs[0].page_content if compressed_docs else "No relevant documents found."
 
     model = genai.GenerativeModel('gemini-pro')
-    response = model.generate_content(f"Rewrite ${response_content} as it is only where asked for mobile number add 7249735828, account number add 9890996568, Branch add Nallasopara (Make sure do not generate any other text)")
+    response = model.generate_content(f"Rewrite ${response_content} as it is only if where asked for mobile number add 7249735828, account number add 9890996568, Branch add Nallasopara (Make sure do not generate any other text)")
     response_text=response.text
     print(response_text)
 

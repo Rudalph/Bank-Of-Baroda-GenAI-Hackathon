@@ -35,6 +35,8 @@ const page = () => {
         entertainment: ''
     });
 
+    const [travels, setTravels] = useState([]);
+
     const handleSubmitData = async () => {
         console.log(amount);
         await addDoc(collection(db, "cities"), {
@@ -48,7 +50,29 @@ const page = () => {
             timestamp: Timestamp.now()
         });
         alert("data added!")
-        window.location.reload();
+        try {
+            const response = await fetch('http://localhost:5006/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ...amount  // Send the entire amount object
+                })
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('API Response:', data.TravelOffer);
+            setTravels(data.TravelOffer)
+            console.log("travels is here",travels);
+            alert("Data added and API called successfully!");
+        } catch (error) {
+            console.error('Error making API call:', error);
+            alert("Failed to make API call");
+        }
     }
 
     const [data, setData] = useState([]);
@@ -58,12 +82,18 @@ const page = () => {
             const querySnapshot = await getDocs(collection(db, "cities"));
             const fetchedData = [];
             querySnapshot.forEach((doc) => {
-                fetchedData.push(doc.data());
+                const data = doc.data();
+                // Convert Timestamp to a readable format
+                if (data.timestamp) {
+                    data.timestamp = data.timestamp.toDate().toLocaleString(); // Converts to a readable string format
+                }
+                fetchedData.push(data);
             });
             setData(fetchedData);
         };
         fetchData();
     }, []);
+    
 
     return (
         <div>
@@ -298,15 +328,15 @@ const page = () => {
                 </div>
             </div>
             <div className='flex justify-center align-middle items-center'><Button className="bg-[#F86E23] m-2" onClick={handleSubmitData}>Submit Data</Button></div>
-            <div className='flex justify-center align-middle items-center mt-10'>
+            <div className='flex justify-center align-middle items-center mt-32'>
                 <ResponsiveContainer width="80%" height={400}>
                     <BarChart data={data}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="timestamp" />
-                        <YAxis/>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="timestamp"/>
+                        <YAxis />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="travel" fill="#F86E23"/>
+                        <Bar dataKey="travel" fill="#F86E23" />
                         <Bar dataKey="health" fill="#82ca9d" />
                         <Bar dataKey="education" fill="#8884d8" />
                         <Bar dataKey="lifestyle" fill="#ff7300" />
@@ -316,6 +346,94 @@ const page = () => {
                     </BarChart>
                 </ResponsiveContainer>
             </div>
+
+            <section className="mx-auto w-full max-w-7xl px-4 py-4 mt-32">
+                <div className="flex flex-col space-y-4 md:flex-row md:items-center md:justify-between md:space-y-0">
+                    <div>
+                        <h2 className="text-lg font-semibold">Employees</h2>
+                        <p className="mt-1 text-sm text-gray-700">
+                            This is a list of all employees. You can add new employees, edit or delete existing
+                            ones.
+                        </p>
+                    </div>
+
+                </div>
+                <div className="mt-6 flex flex-col">
+                    <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                            <div className="overflow-hidden border border-[#F86E23] md:rounded-lg">
+                                <table className="min-w-full divide-y divide-[#F86E23]">
+                                    <thead className="bg-[#FCE0D3]">
+                                        <tr>
+                                            <th
+                                                scope="col"
+                                                className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                                            >
+                                                <span>Offers</span>
+                                            </th>
+                                            <th
+                                                scope="col"
+                                                className="px-12 py-3.5 text-left text-sm font-normal text-gray-700"
+                                            >
+                                                Details
+                                            </th>
+
+                                            <th
+                                                scope="col"
+                                                className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                                            >
+                                                Validity
+                                            </th>
+
+                                            <th
+                                                scope="col"
+                                                className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                                            >
+                                                Code
+                                            </th>
+
+                                            <th
+                                                scope="col"
+                                                className="px-4 py-3.5 text-left text-sm font-normal text-gray-700"
+                                            >
+                                                Link
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-gray-200 bg-white">
+                                    {travels.map((offer, index) => (
+                                        <tr key={index}>
+                                            <td className="whitespace-nowrap px-4 py-4">
+                                                <div className="flex items-center">
+                                                    <div className="">
+                                                        <div className="text-sm font-medium text-gray-900">{offer.name}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td className="whitespace-nowrap px-12 py-4">
+                                                <div className="text-sm text-gray-900 ">details</div>
+                                            </td>
+                                            <td className="whitespace-nowrap px-4 py-4">
+                                                <div className="text-sm text-gray-900 ">validity</div>
+                                            </td>
+                                            <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700">
+                                                code
+                                            </td>
+                                            <td className="whitespace-nowrap px-4 py-4  text-sm font-medium">
+                                                <a href="#" className="text-gray-700">
+                                                    link
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     )
 }
